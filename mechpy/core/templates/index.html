@@ -1,58 +1,190 @@
 <!doctype html>
-<html class="no-js" lang="en">
-   <head>
-      <meta charset="utf-8"/>
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-      <title>Mechpy</title>
-      <!-- Foundation Css -->
-      <link rel="stylesheet" href="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
-      <!-- Estilo -->
-      <link rel="stylesheet" href="static/css/style.css">
-      <!-- Ícones -->
-      <link rel="stylesheet" href="static/css/fonts/foundation-icons.css">
-      <!-- JQuery -->
-      <script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>
-      <!-- Angular -->
-      <script type="text/javascript" src="https://code.angularjs.org/1.5.5/angular.js"></script>
-      <!-- App -->
-      <!-- Javascripts aqui -->
-   </head>
-   <body ng-app="app">
-      <div class="off-canvas-wrapper" ng-controller="HomeController">
-         <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
-            <!-- off-canvas title bar for 'small' screen -->
-            <div class="title-bar" data-responsive-toggle="widemenu" data-hide-for="medium">
-               <div class="title-bar-left">
-                  <button class="menu-icon" type="button" data-open="offCanvasLeft"></button>
-                  <span class="title-bar-title">Mechpy</span>
-               </div>
-            </div>
-            <!-- "wider" top-bar menu for 'medium' and up -->
-            <div id="widemenu" class="top-bar">
-               <div class="top-bar-left">
-                  <ul class="dropdown menu" data-dropdown-menu>
-                     <li class="menu-text">Mechpy</li>
-                  </ul>
-               </div>
-            </div>
-            <!-- original content goes in this container -->
-            <div class="off-canvas-content" data-off-canvas-content>
-               <div class="row column">
-                  <div class="large ">
-                     <div class="row column text-center">
-                        <h1>Mechpy</h1>
-                        <h2 class="subheader">Aplication Client</h2>
+{% load static %}
+<html class="no-js" lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foundation for Sites</title>
+    <link rel="stylesheet" href="{% static 'css/foundation.css' %}">
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+    
+  </head>
+  <body>
+      <div class="off-canvas-wrapper-inner max-height content" data-off-canvas-wrapper>
+          <div class="off-canvas position-left max-height content-menu" id="offCanvasLeft" data-off-canvas>
+              <div class="my-left-menu">
+                <div class="panel sublevel-2">
+                  <h3>Login</h3>
+                  <form>
+                     <div class="row">
+                       <div class="large columns">
+                           <input type="text" name="username" placeholder="Username" />
+                       </div>
                      </div>
-                  </div>
-               </div>
-            </div>
-         </div>
+                    <div class="row">
+                       <div class="large columns">
+                           <input type="password" name="password" placeholder="Password" />
+                       </div>
+                    </div>
+                    <div class="row">
+                      <div class="large columns">
+                        <input type="submit" class="expanded button" value="Log In"/>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                  <ul class="vertical accordion-menu menu" data-accordion-menu>
+                      <li> <a href="#">Item 1</a>
+                          <ul class="menu vertical sublevel-1">
+                              <li> <a href="#">Sub-item 1</a>
+                                  <ul class="menu vertical sublevel-2">
+                                      <li><a class="subitem" href="#">Thing 1</a>
+                                      </li>
+                                      <li><a class="subitem" href="#">Thing 2</a>
+                                      </li>
+                                      <li><a class="subitem" href="#">Thing 3</a>
+                                      </li>
+                                  </ul>
+                              </li>
+                              <li> <a href="#">Sub-item 2</a>
+                                  <ul class="menu vertical sublevel-2">
+                                      <li> <a href="#">Super-sub-item 1</a>
+                                          <ul class="menu vertical sublevel-3">
+                                              <li><a class="subitem" href="#">Thing 1</a>
+                                              </li>
+                                              <li><a class="subitem" href="#">Thing 2</a>
+                                              </li>
+                                          </ul>
+                                      </li>
+                                      <li><a class="subitem" href="#">Thing 2</a>
+                                      </li>
+                                  </ul>
+                              </li>
+                              <li><a class="subitem" href="#">Thing 1</a>
+                              </li>
+                              <li><a class="subitem" href="#">Thing 2</a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li> <a href="#">Item 2</a>
+                          <ul class="menu vertical sublevel-1">
+                              <li><a class="subitem" href="#">Thing 1</a>
+                              </li>
+                              <li><a class="subitem" href="#">Thing 2</a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li> <a href="#">Item 3</a>
+                          <ul class="menu vertical sublevel-1">
+                              <li><a class="subitem" href="#">Thing 1</a>
+                              </li>
+                              <li><a class="subitem" href="#">Thing 2</a>
+                              </li>
+                          </ul>
+                      </li>
+                      <li> <a href="#">Item 4</a>
+                          <ul class="menu vertical sublevel-1">
+                              <li> <a href="#">Sub-item 3</a>
+                                  <ul class="menu vertical sublevel-2">
+                                      <li><a class="subitem" href="#">Thing 1</a>
+                                      </li>
+                                      <li><a class="subitem" href="#">Thing 2</a>
+                                      </li>
+                                  </ul>
+                              </li>
+                              <li><a class="subitem" href="#">Thing 1</a>
+                              </li>
+                              <li><a class="subitem" href="#">Thing 2</a>
+                              </li>
+                          </ul>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+          <div class="off-canvas-content off-canvas-wrapper max-height" data-off-canvas-content>
+              <div class="title-bar">
+                  <div class="title-bar-left">
+                      <button class="menu-icon" type="button" data-toggle="offCanvasLeft"></button> <span class="title-bar-title">Mechpy</span> </div>
+                  <div class="title-bar-right"> Login </div>
+              </div>
+              <div class="panel callout large dinamic-content">
+                <h3>Olá Mundo</h3>
+                <!-- Form -->
+                <form>
+                    <div class="row">
+                        <div class="large-12 columns">
+                            <label>Input Label
+                                <input type="text" placeholder="large-12.columns"
+                                /> </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="large-4 columns">
+                            <label>Input Label
+                                <input type="text" placeholder="large-4.columns"
+                                /> </label>
+                        </div>
+                        <div class="large-4 columns">
+                            <label>Input Label
+                                <input type="text" placeholder="large-4.columns"
+                                /> </label>
+                        </div>
+                        <div class="large-4 columns">
+                            <div class="row collapse">
+                                <label>Input Label</label>
+                                <div class="small-9 columns">
+                                    <input type="text" placeholder="small-9.columns"
+                                    /> </div>
+                                <div class="small-3 columns"> <span class="postfix">.com</span> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="large-12 columns">
+                            <label>Select Box
+                                <select>
+                                    <option value="husker">Husker</option>
+                                    <option value="starbuck">Starbuck</option>
+                                    <option value="hotdog">Hot Dog</option>
+                                    <option value="apollo">Apollo</option>
+                                </select>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="large-6 columns">
+                            <label>Choose Your Favorite</label>
+                            <input type="radio" name="pokemon"
+                            value="Red" id="pokemonRed">
+                            <label for="pokemonRed">Red</label>
+                            <input type="radio" name="pokemon" value="Blue"
+                            id="pokemonBlue">
+                            <label for="pokemonBlue">Blue</label>
+                        </div>
+                        <div class="large-6 columns">
+                            <label>Check these out</label>
+                            <input id="checkbox1" type="checkbox">
+                            <label for="checkbox1">Checkbox 1</label>
+                            <input id="checkbox2" type="checkbox">
+                            <label for="checkbox2">Checkbox 2</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="large-12 columns">
+                            <label>Textarea Label
+                                <textarea placeholder="small-12.columns"></textarea>
+                            </label>
+                        </div>
+                    </div>
+                </form>
+                <!-- Form -->
+              </div>
+          </div>
       </div>
-      <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-      <script src="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
-      <script>
-         $(document).foundation();
-      </script>
-   </body>
+      <script src="{% static 'js/vendor/jquery.js' %}"></script>
+      <script src="{% static 'js/vendor/what-input.js' %}"></script>
+      <script src="{% static 'js/vendor/foundation.js' %}"></script>
+      <script src="{% static 'js/app.js' %}"></script>
+  </body>
 </html>
