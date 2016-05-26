@@ -94,36 +94,58 @@ class Servico(models.Model):
         verbose_name = 'Serviço'
         verbose_name_plural = 'Serviços'
 
-class PedidoVenda(models.Model):
+class Pedido(models.Model):
 
     descricao = models.CharField('Descrição',max_length=200)
     valor = models.DecimalField('Valor',max_digits=15, decimal_places=2)
     data_inicio = models.DateField('Data Entrada',auto_now_add=True)
     data_termino = models.DateField('Data Saída', null=True, blank=True)
     km = models.IntegerField('KM', blank=True, null=True)
+
+    class Meta:
+        abstract = True
+
+class Item(models.Model):
+
+    descricao = models.CharField('Descrição',max_length=200)
+    valor = models.DecimalField('Valor',max_digits=15, decimal_places=2)
+
+    class Meta:
+        abstract = True
+
+class Faturamento(models.Model):
+
+    valor = models.DecimalField('Valor',max_digits=15, decimal_places=2)
+    valor_pago = models.DecimalField('Valor',max_digits=15, decimal_places=2)
+    data_pagamento = models.DateField('Data Pagamento')
+    data_vencimento = models.DateField('Data Vencimento')
+    juros_vencimento = models.DecimalField('Juros Vencimento',max_digits=15, decimal_places=2)
+
+    class Meta:
+        abstract = True
+
+class PedidoVenda(Pedido):
+
     pessoa_veiculo = models.ForeignKey('PessoaVeiculo', related_name='pedidos_venda', null=False, blank=False)
 
     class Meta:
         verbose_name = 'Pedido Venda'
         verbose_name_plural = 'Pedidos Venda'
 
-class ItemServicoVenda(models.Model):
-    descricao = models.CharField('Descrição',max_length=200)
-    valor = models.DecimalField('Valor',max_digits=15, decimal_places=2)
-    servico = models.ForeignKey('Servico', related_name='itens_servico_venda', null=False, blank=False)
+class ItemServicoVenda(Item):
+
     pedido_venda = models.ForeignKey('PedidoVenda', related_name='itens_servico', null=False, blank=False)
+    servico = models.ForeignKey('Servico', related_name='itens_servico_venda', null=False, blank=False)
 
     class Meta:
         verbose_name = 'Item Serviço Venda'
         verbose_name_plural = 'Itens Serviço Venda'
 
 
-class ItemProdutoVenda(models.Model):
-    descricao = models.CharField('Descrição',max_length=200)
-    valor = models.DecimalField('Valor',max_digits=15, decimal_places=2)
-    produto = models.ForeignKey('Produto', related_name='itens_produto_venda', null=False, blank=False)
-    pedido_venda = models.ForeignKey('PedidoVenda', related_name='itens_produto', null=False, blank=False)
+class ItemProdutoVenda(Item):
 
+    pedido_venda = models.ForeignKey('PedidoVenda', related_name='itens_produto', null=False, blank=False)
+    produto = models.ForeignKey('Produto', related_name='itens_produto_venda', null=False, blank=False)
     class Meta:
         verbose_name = 'Item Produto Venda'
         verbose_name_plural = 'Itens Produto Venda'
@@ -152,58 +174,43 @@ class Apontamento(models.Model):
         verbose_name = 'Apontamento'
         verbose_name_plural = 'Apontamentos'
 
-class PedidoCompra(models.Model):
+class PedidoCompra(Pedido):
 
-    descricao = models.CharField('Descrição',max_length=200)
-    valor = models.DecimalField('Valor',max_digits=15, decimal_places=2)
-    data_inicio = models.DateField('Data Entrada',auto_now_add=True)
-    data_termino = models.DateField('Data Saída', null=True, blank=True)
-    km = models.IntegerField('KM', blank=True, null=True)
     pessoa_veiculo = models.ForeignKey('PessoaVeiculo', related_name='pedidos_compra', null=False, blank=False)
 
     class Meta:
         verbose_name = 'Pedido Compra'
         verbose_name_plural = 'Pedidos Compra'
 
-class ItemServicoCompra(models.Model):
-    descricao = models.CharField('Descrição',max_length=200)
-    valor = models.DecimalField('Valor',max_digits=15, decimal_places=2)
-    servico = models.ForeignKey('Servico', related_name='itens_servico_compra', null=False, blank=False)
+class ItemServicoCompra(Item):
+
     pedido_compra = models.ForeignKey('PedidoCompra', related_name='itens_servico', null=False, blank=False)
+    servico = models.ForeignKey('Servico', related_name='itens_servico_compra', null=False, blank=False)
 
     class Meta:
         verbose_name = 'Item Serviço Compra'
         verbose_name_plural = 'Itens Serviço Compra'
 
 
-class ItemProdutoCompra(models.Model):
-    descricao = models.CharField('Descrição',max_length=200)
-    valor = models.DecimalField('Valor',max_digits=15, decimal_places=2)
-    produto = models.ForeignKey('Produto', related_name='itens_produto_compra', null=False, blank=False)
+class ItemProdutoCompra(Item):
+
     pedido_compra = models.ForeignKey('PedidoCompra', related_name='itens_produto', null=False, blank=False)
+    produto = models.ForeignKey('Produto', related_name='itens_produto_compra', null=False, blank=False)
 
     class Meta:
         verbose_name = 'Item Produto Compra'
         verbose_name_plural = 'Itens Produto Compra'
 
-class FaturaRecebimento(models.Model):
-    valor = models.DecimalField('Valor',max_digits=15, decimal_places=2)
-    valor_pago = models.DecimalField('Valor',max_digits=15, decimal_places=2)
-    data_pagamento = models.DateField('Data Pagamento')
-    data_vencimento = models.DateField('Data Vencimento')
-    juros_vencimento = models.DecimalField('Juros Vencimento',max_digits=15, decimal_places=2)
+class FaturaRecebimento(Faturamento):
+    
     pedido_venda = models.ForeignKey('PedidoVenda', related_name='faturas', null=False, blank=False)
 
     class Meta:
         verbose_name = 'Fatura Recebimento'
         verbose_name_plural = 'Faturas Recebimento'
 
-class FaturaPagamento(models.Model):
-    valor = models.DecimalField('Valor',max_digits=15, decimal_places=2)
-    valor_pago = models.DecimalField('Valor',max_digits=15, decimal_places=2)
-    data_pagamento = models.DateField('Data Pagamento')
-    data_vencimento = models.DateField('Data Vencimento')
-    juros_vencimento = models.DecimalField('Juros Vencimento',max_digits=15, decimal_places=2)
+class FaturaPagamento(Faturamento):
+
     pedidoCompra = models.ForeignKey('PedidoCompra', related_name='faturas', null=False, blank=False)
 
     class Meta:
