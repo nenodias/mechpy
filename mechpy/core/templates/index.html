@@ -1,0 +1,58 @@
+<!doctype html>
+<html class="no-js" lang="en">
+   <head>
+      <meta charset="utf-8"/>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <title>Mechpy</title>
+      <!-- Foundation Css -->
+      <link rel="stylesheet" href="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
+      <!-- Estilo -->
+      <link rel="stylesheet" href="static/css/style.css">
+      <!-- Ícones -->
+      <link rel="stylesheet" href="static/css/fonts/foundation-icons.css">
+      <!-- JQuery -->
+      <script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>
+      <!-- Angular -->
+      <script type="text/javascript" src="https://code.angularjs.org/1.5.5/angular.js"></script>
+      <!-- App -->
+      <!-- Javascripts aqui -->
+   </head>
+   <body ng-app="app">
+      <div class="off-canvas-wrapper" ng-controller="HomeController">
+         <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+            <!-- off-canvas title bar for 'small' screen -->
+            <div class="title-bar" data-responsive-toggle="widemenu" data-hide-for="medium">
+               <div class="title-bar-left">
+                  <button class="menu-icon" type="button" data-open="offCanvasLeft"></button>
+                  <span class="title-bar-title">Mechpy</span>
+               </div>
+            </div>
+            <!-- "wider" top-bar menu for 'medium' and up -->
+            <div id="widemenu" class="top-bar">
+               <div class="top-bar-left">
+                  <ul class="dropdown menu" data-dropdown-menu>
+                     <li class="menu-text">Mechpy</li>
+                  </ul>
+               </div>
+            </div>
+            <!-- original content goes in this container -->
+            <div class="off-canvas-content" data-off-canvas-content>
+               <div class="row column">
+                  <div class="large ">
+                     <div class="row column text-center">
+                        <h1>Mechpy</h1>
+                        <h2 class="subheader">Aplication Client</h2>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+      <script src="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+      <script>
+         $(document).foundation();
+      </script>
+   </body>
+</html>
