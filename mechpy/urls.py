@@ -9,6 +9,5 @@ urlpatterns = [
     url(r'^$', TemplateView.as_view(template_name='index.html')),
     url(r'^api/token/', obtain_auth_token, name='api-token'),
     url(r'^api/', include(conta_router.urls)),
-    #url(r'^api/auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^admin/', admin.site.urls),
 ]

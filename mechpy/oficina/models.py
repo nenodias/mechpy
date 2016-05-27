@@ -211,7 +211,7 @@ class FaturaRecebimento(Faturamento):
 
 class FaturaPagamento(Faturamento):
 
-    pedidoCompra = models.ForeignKey('PedidoCompra', related_name='faturas', null=False, blank=False)
+    pedido_compra = models.ForeignKey('PedidoCompra', related_name='faturas', null=False, blank=False)
 
     class Meta:
         verbose_name = 'Fatura Recebimento'
