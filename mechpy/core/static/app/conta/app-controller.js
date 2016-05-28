@@ -10,9 +10,17 @@
         var self = this;
         $scope.username = null;
         $scope.password = null;
+        $scope.alerts = [];
+        $scope.closeAlert = function(index){
+            $scope.alerts.splice(index, 1);
+        };
         $scope.doLogin = function(){
-            console.log('Tentou login');
-            LoginService.logon($scope.username, $scope.password);
+            LoginService.logon($scope.username, $scope.password).then(function(data){
+                if(!data){
+                    $scope.alerts = [];
+                    $scope.alerts.push({type:'alert',msg: "Ocorreu um erro ao efetuar Login!"});
+                }
+            });
         };
     }])
     

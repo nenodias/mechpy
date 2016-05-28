@@ -5,7 +5,7 @@
         $locationProvider.html5Mode({
           enabled: true,
           requireBase: false
-        }).hashPrefix('!');
+        });
         $routeProvider
         .when('/', {
            templateUrl : 'static/app/conta/views/home.html',

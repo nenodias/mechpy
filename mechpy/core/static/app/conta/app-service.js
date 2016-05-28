@@ -1,18 +1,22 @@
 (function() {
     'use strict';
     angular.module('conta')
-    .factory('LoginService', ['$rootScope', '$http', '$cookies', '$location', '$route',
-    function($rootScope, $http, $cookies, $location, $route) {
+    .factory('LoginService', ['$rootScope', '$http', '$cookies', '$location', '$route', '$q',
+    function($rootScope, $http, $cookies, $location, $route, $q) {
         var servico = {};
 
         servico.logoff = function(){
-          $rootScope.user = {'token':null,'username':null,'email':null,'name':null };
+          $cookies.remove('user');
+          try{
+            $rootScope.user = {'token':null,'username':null,'email':null,'name':null };
+          }catch(err){}
+          $location.path('/login');
         };
 
         servico.logon = function(username, password){
+          var d1 = $q.defer();
           $http.post('/api/token/',{'username':username, 'password':password})
           .then(function successCallback(response) {
-            console.log(response);
               var token = response.data.token;
               var config = {
                 headers:  {
@@ -26,11 +30,14 @@
                 $rootScope.user = {'token':token,'username':d.username,'email':d.email, 'name':d.name };
                 $cookies.put('user',JSON.stringify( $rootScope.user ) );
                 $location.path('/home');
+                d1.resolve();
               });
           }, function errorCallback(response) {
               //FAULT
               servico.logoff();
+              d1.resolve(false);
           });
+          return d1.promise;
         };
 
         servico.permissao = function(){
