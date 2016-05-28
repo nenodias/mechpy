@@ -9,7 +9,9 @@
 .my-left-menu{
     color: #fff !important;
 }
-
+.js-off-canvas-exit{
+  z-index: -999 !important;
+}
 .my-left-menu ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
     color:    #777;
 }

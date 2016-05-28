@@ -6,5 +6,8 @@ from .serializers import UserSerializer
 User = get_user_model()
 
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
+    lookup_field = User.USERNAME_FIELD
+    lookup_url_kwarg = User.USERNAME_FIELD
+    queryset = User.objects.order_by(User.USERNAME_FIELD)
     serializer_class = UserSerializer
+    search_fields = (User.USERNAME_FIELD)

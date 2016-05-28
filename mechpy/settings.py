@@ -175,6 +175,8 @@ EMAIL_PORT = 587
 
 CONTACT_EMAIL = 'contato@simplemooc.com'
 
+#Token URL name
+TOKEN_URL = 'api-token'
 
 #Auth
 AUTH_USER_MODEL = 'conta.User'
