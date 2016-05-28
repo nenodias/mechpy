@@ -21,11 +21,7 @@
             </aside>
             
             <section class="main-section">
-                <div class="small-12 columns">
-                    <h1>How to use</h1>
-                    <p>Just use the standard layout for an offcanvas page as documented in the <a href="http://foundation.zurb.com/docs/components/offcanvas.html">foundation docs</a></p>
-                    <p>As long as you include mm.foundation.offcanvas it should simply work</p>
-                </div>
+                <div ng-if="template_name" ng-include="template_name"></div>
             </section>
 
             <a class="exit-off-canvas"></a>

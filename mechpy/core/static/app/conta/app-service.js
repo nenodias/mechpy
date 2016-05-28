@@ -1,8 +1,8 @@
 (function() {
     'use strict';
     angular.module('conta')
-    .factory('LoginService', ['$rootScope', '$http', '$cookies', '$location', '$route', '$q',
-    function($rootScope, $http, $cookies, $location, $route, $q) {
+    .factory('LoginService', ['$rootScope', '$http', '$cookies', '$state', '$stateParams', '$q',
+    function($rootScope, $http, $cookies, $state, $stateParams, $q) {
         var servico = {};
 
         servico.logoff = function(){
@@ -10,7 +10,7 @@
           try{
             $rootScope.user = {'token':null,'username':null,'email':null,'name':null };
           }catch(err){}
-          $location.path('/login');
+          $state.go('login');
         };
 
         servico.logon = function(username, password){
@@ -29,7 +29,7 @@
                 var d = response.data;
                 $rootScope.user = {'token':token,'username':d.username,'email':d.email, 'name':d.name };
                 $cookies.put('user',JSON.stringify( $rootScope.user ) );
-                $location.path('/home');
+                $state.go('home');
                 d1.resolve();
               });
           }, function errorCallback(response) {
@@ -41,7 +41,6 @@
         };
 
         servico.permissao = function(){
-             $location.path();
              var permissao_necessaria = false;
              try{
                 permissao_necessaria = $rootScope.current.acesso.requerido;

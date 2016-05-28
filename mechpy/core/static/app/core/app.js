@@ -1,4 +1,4 @@
 (function() {
     'use strict';
-    angular.module('core', ['conta']);
+    angular.module('core',[]);
  })();

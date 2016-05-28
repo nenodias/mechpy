@@ -2,7 +2,7 @@
   <h3>Login</h3>
   <form name="loginForm" ng-submit="doLogin()" ng-hide="">
     <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">
-      ({ alert.msg })
+      {{ alert.msg }}
     </alert>
      <div class="row">
        <div class="large columns">

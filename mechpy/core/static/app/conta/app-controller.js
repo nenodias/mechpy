@@ -1,8 +1,12 @@
 (function() {
     'use strict';
     angular.module('conta')
-    .controller('HomeController', ['$scope',function($scope){
-        var self = this;
+    .controller('HomeController', ['$scope','$stateParams',function($scope, $stateParams){
+        var modulo = $stateParams.modulo;
+        var nome = $stateParams.nome;
+        if(modulo !== null && nome !== null){
+            $scope.template_name = 'static/app/' + modulo + '/views/' +nome + '.html';
+        }
         $scope.item1 = true;
         $scope.item2 = true;
     }])

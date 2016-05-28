@@ -1,35 +1,41 @@
 (function() {
     'use strict';
     angular.module('conta')
-    .config( ['$routeProvider','$locationProvider', function($routeProvider, $locationProvider) {
-        $locationProvider.html5Mode({
-          enabled: true,
-          requireBase: false
-        });
-        $routeProvider
-        .when('/', {
-           templateUrl : 'static/app/conta/views/home.html',
-           controller     : 'HomeController',
-           acesso: {
-             requerido: true
-           }
-        })
-
-        .when('/login', {
-           templateUrl : 'static/app/conta/views/login-form.html',
-           controller     : 'LoginController'
-        })
-
-        .otherwise ({ redirectTo: '/' });
+    .config( ['$stateProvider','$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+      $stateProvider
+      .state('home', {
+        url: '/',
+        params:{modulo:null, nome:null, id:null},
+        templateUrl: 'static/app/conta/views/home.html',
+        controller: 'HomeController',
+        acesso:{
+          requerido: true,
+        }
+      })
+      .state('dinamico', {
+        url: '/{modulo}/{nome}/{id:[/d+]}',
+        params:{modulo:null, nome:null, id:null},
+        templateUrl: 'static/app/conta/views/home.html',
+        controller: 'HomeController',
+        acesso:{
+          requerido: true,
+        }
+      })
+      .state('login', {
+        url: '/login',
+        templateUrl: 'static/app/conta/views/login-form.html',
+        controller: 'LoginController',
+      });
+      $urlRouterProvider.otherwise('/');
     }])
-    .run(['$rootScope', '$location', 'LoginService', function ($rootScope, $location, LoginService) {
+    .run(['$rootScope', '$state', 'LoginService', function ($rootScope, $state, LoginService) {
         $rootScope.year = new Date().getFullYear();
-        $rootScope.$on('$routeChangeStart', function(event, next, current) {
-          $rootScope.current = next;
-            if ( ( (next.acesso !== undefined  && next.acesso.requerido === true ) && !LoginService.permissao() ) ) {
+        $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+          $rootScope.current = toState;
+            if ( ( (toState.acesso !== undefined  && toState.acesso.requerido === true ) && !LoginService.permissao() ) ) {
                 console.log('DENY');
                 event.preventDefault();
-                $location.path('/login');
+                $state.go('login');
             }
         });
     }]);

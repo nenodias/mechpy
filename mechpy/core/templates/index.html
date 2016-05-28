@@ -1,6 +1,6 @@
 <!doctype html>
 {% load static %}
-<html class="no-js" lang="pt-br" dir="ltr" ng-app="core">
+<html class="no-js" lang="pt-br" dir="ltr" ng-app="conta">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{% static 'css/foundation.css' %}">
     <link rel="stylesheet" href="{% static 'font/css/font-awesome.css' %}">
   </head>
-  <body ng-view>
+  <body ui-view>
 
       <!--<script src="{% static 'js/vendor/jquery.js' %}"></script> -->
       <script src="{% static 'js/vendor/what-input.js' %}"></script>
@@ -21,8 +21,8 @@
       <script src="{% static 'js/vendor/angular-1.5.6/angular-cookies.js' %}"></script>
       <script src="{% static 'js/vendor/angular-1.5.6/angular-loader.js' %}"></script>
       <script src="{% static 'js/vendor/angular-1.5.6/angular-resource.js' %}"></script>
-      <script src="{% static 'js/vendor/angular-1.5.6/angular-route.js' %}"></script>
-      
+      <!--<script src="{% static 'js/vendor/angular-1.5.6/angular-route.js' %}"></script> -->
+      <script src="{% static 'js/vendor/angular-ui-router.js' %}"></script>
       <script src="{% static 'js/vendor/angular-foundation/mm-foundation-tpls-0.8.0.min.js' %}"></script>
       
       <script src="{% static 'app/conta/app.js' %}"></script>
@@ -33,5 +33,6 @@
       <script src="{% static 'app/conta/app-components.js' %}"></script>
 
       <script src="{% static 'app/core/app.js' %}"></script>
+      <script src="{% static 'app/core/app-controller.js' %}"></script>
   </body>
 </html>
