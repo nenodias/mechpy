@@ -6,111 +6,32 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Foundation for Sites</title>
-    <link rel="stylesheet" href="{% static 'css/foundation.css' %}">
     <link rel="stylesheet" href="{% static 'css/app.css' %}">
     <link rel="stylesheet" href="{% static 'js/vendor/angular-1.5.6/angular-csp.css' %}" />
-    
+    <link rel="stylesheet" href="{% static 'css/foundation.css' %}">
+    <link rel="stylesheet" href="{% static 'font/css/font-awesome.css' %}">
   </head>
-  <body>
-      <div class="off-canvas-wrapper-inner max-height content" data-off-canvas-wrapper>
-          <div class="off-canvas position-left max-height content-menu" id="offCanvasLeft" data-off-canvas>
-            <menu-esquerdo></menu-esquerdo>
-          </div>
-          <div class="off-canvas-content off-canvas-wrapper max-height" data-off-canvas-content>
-              <div class="title-bar">
-                  <div class="title-bar-left">
-                      <button class="menu-icon" type="button" data-toggle="offCanvasLeft"></button> <span class="title-bar-title">Mechpy</span>
-                  </div>
-                  <div class="title-bar-right"> &nbsp; </div>
-              </div>
-              <div class="panel callout large dinamic-content">
-                <h3>Olá Mundo</h3>
-                <!-- Form -->
-                <form>
-                    <div class="row">
-                        <div class="large-12 columns">
-                            <label>Input Label
-                                <input type="text" placeholder="large-12.columns"
-                                /> </label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="large-4 columns">
-                            <label>Input Label
-                                <input type="text" placeholder="large-4.columns"
-                                /> </label>
-                        </div>
-                        <div class="large-4 columns">
-                            <label>Input Label
-                                <input type="text" placeholder="large-4.columns"
-                                /> </label>
-                        </div>
-                        <div class="large-4 columns">
-                            <div class="row collapse">
-                                <label>Input Label</label>
-                                <div class="small-9 columns">
-                                    <input type="text" placeholder="small-9.columns"
-                                    /> </div>
-                                <div class="small-3 columns"> <span class="postfix">.com</span> </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="large-12 columns">
-                            <label>Select Box
-                                <select>
-                                    <option value="husker">Husker</option>
-                                    <option value="starbuck">Starbuck</option>
-                                    <option value="hotdog">Hot Dog</option>
-                                    <option value="apollo">Apollo</option>
-                                </select>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="large-6 columns">
-                            <label>Choose Your Favorite</label>
-                            <input type="radio" name="pokemon"
-                            value="Red" id="pokemonRed">
-                            <label for="pokemonRed">Red</label>
-                            <input type="radio" name="pokemon" value="Blue"
-                            id="pokemonBlue">
-                            <label for="pokemonBlue">Blue</label>
-                        </div>
-                        <div class="large-6 columns">
-                            <label>Check these out</label>
-                            <input id="checkbox1" type="checkbox">
-                            <label for="checkbox1">Checkbox 1</label>
-                            <input id="checkbox2" type="checkbox">
-                            <label for="checkbox2">Checkbox 2</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="large-12 columns">
-                            <label>Textarea Label
-                                <textarea placeholder="small-12.columns"></textarea>
-                            </label>
-                        </div>
-                    </div>
-                </form>
-                <!-- Form -->
-              </div>
-          </div>
-      </div>
-      <script src="{% static 'js/vendor/jquery.js' %}"></script>
+  <body ng-view>
+
+      <!--<script src="{% static 'js/vendor/jquery.js' %}"></script> -->
       <script src="{% static 'js/vendor/what-input.js' %}"></script>
-      <script src="{% static 'js/vendor/foundation.js' %}"></script>
-      <script src="{% static 'js/app.js' %}"></script>
+      
       <script src="{% static 'js/vendor/angular-1.5.6/angular.js' %}"></script>
       <script src="{% static 'js/vendor/angular-1.5.6/angular-aria.js' %}"></script>
       <script src="{% static 'js/vendor/angular-1.5.6/angular-cookies.js' %}"></script>
       <script src="{% static 'js/vendor/angular-1.5.6/angular-loader.js' %}"></script>
       <script src="{% static 'js/vendor/angular-1.5.6/angular-resource.js' %}"></script>
       <script src="{% static 'js/vendor/angular-1.5.6/angular-route.js' %}"></script>
+      
+      <script src="{% static 'js/vendor/angular-foundation/mm-foundation-tpls-0.8.0.min.js' %}"></script>
+      
       <script src="{% static 'app/conta/app.js' %}"></script>
       <script src="{% static 'app/conta/app-config.js' %}"></script>
       <script src="{% static 'app/conta/app-service.js' %}"></script>
+      <script src="{% static 'app/conta/app-controller.js' %}"></script>
+      <script src="{% static 'app/conta/app-route.js' %}"></script>
       <script src="{% static 'app/conta/app-components.js' %}"></script>
+
       <script src="{% static 'app/core/app.js' %}"></script>
   </body>
 </html>

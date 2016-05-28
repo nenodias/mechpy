@@ -15,12 +15,16 @@
         return{
             restrict:'E',
             templateUrl:'static/app/conta/views/dados-perfil.html',
-            controller: function(){
+            controller: ['$rootScope',function($rootScope){
                 var self = this;
                 self.username = null;
                 self.email = null;
-            },
-            controllerAs:'login'
+                if($rootScope.user !== undefined){
+                    self.username = $rootScope.user.username;
+                    self.email = $rootScope.user.email;
+                }
+            }],
+            controllerAs:'dados'
         };
     })
     ;

@@ -1,4 +1,4 @@
 (function() {
     'use strict';
-    angular.module('conta', [ 'ngResource', 'ngRoute', 'ngCookies']);
+    angular.module('conta', [ 'mm.foundation', 'ngResource', 'ngRoute', 'ngCookies']);
  })();
