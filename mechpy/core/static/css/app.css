@@ -3,8 +3,8 @@
     display: table;
     position: relative;
 }
-.max-height {
-    height: 100% !important;
+.off-canvas-wrap.move-right, .off-canvas-wrap.move-left {
+    overflow: auto;
 }
 .left-off-canvas-menu{
   border-right: 5px dashed #333;

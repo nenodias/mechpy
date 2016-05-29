@@ -8,7 +8,6 @@
             $scope.template_name = 'static/app/' + modulo + '/views/' +nome + '.html';
         }
         if($stateParams.id !== null){
-            debugger;
             $scope.entidadeId = $stateParams.id;
         }
         $scope.item1 = true;

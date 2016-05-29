@@ -1,5 +1,11 @@
 <div class="row" ng-controller="ListPessoaController">
-  <h2>Listagem de Pessoas</h2>
+  <div class="panel clearfix">
+    <h2 class="left">Listagem de Pessoas</h2>
+    <a href="#/core/pessoa/" class="button success tiny right">
+      <i class="fa fa-plus-circle" aria-hidden="true"></i>
+      Novo
+    </a>
+  </div>
   <table>
     <thead>
       <tr>
@@ -9,6 +15,7 @@
         <th width="150">Celular</th>
         <th width="150">Email</th>
         <th width="150">Tipo</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -19,6 +26,11 @@
         <td>{{ pessoa.celular }}</td>
         <td>{{ pessoa.email }}</td>
         <td>{{ pessoa.tipo }}</td>
+        <td>
+          <a href="#/core/pessoa/{{ pessoa.id }}" class="button tiny">
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+          </a>
+        </td>
       </tr>
     </tbody>
   </table>

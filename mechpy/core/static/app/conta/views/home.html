@@ -1,7 +1,7 @@
 
-<div ng-controller="HomeController" class="max-height">
-    <div class="off-canvas-wrap max-height">
-        <div class="inner-wrap max-height">
+<div ng-controller="HomeController">
+    <div class="off-canvas-wrap">
+        <div class="inner-wrap">
             <nav class="tab-bar">
                 <section class="left-small">
                     <a class="left-off-canvas-toggle menu-icon" ><span></span></a>
@@ -20,7 +20,7 @@
                 <menu-esquerdo></menu-esquerdo>
             </aside>
             
-            <section class="main-section">
+            <section>
                 <div ng-if="template_name" ng-include="template_name"></div>
             </section>
 
