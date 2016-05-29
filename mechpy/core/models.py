@@ -13,18 +13,23 @@ class Pessoa(models.Model):
 
     nome = models.CharField('Nome',max_length=200, blank=False, null=False)
     observacao = models.TextField('Observação', blank=True, null=True)
-    telefone = models.CharField('Telefone',max_length=20)
-    celular = models.CharField('Celular',max_length=20)
-    email = models.EmailField('Email')
+    telefone = models.CharField('Telefone',max_length=20, blank=True, null=True)
+    celular = models.CharField('Celular',max_length=20, blank=True, null=True)
+    email = models.EmailField('Email', blank=True, null=True)
     tipo = models.CharField('Tipo',max_length=2, blank=False, null=False, choices=TIPO_PESSOA)
-    pessoa_juridica = models.OneToOneField('PessoaJuridica', verbose_name='Pessoa Jurídica',null=True, blank=True)
-    pessoa_fisica = models.OneToOneField('PessoaFisica', verbose_name='Pessoa Física',null=True, blank=True)
 
     class Meta:
         verbose_name = 'Pessoa'
         verbose_name_plural = 'Pessoas'
 
 class PessoaFisica(models.Model):
+    pessoa = models.OneToOneField(
+        Pessoa,
+        verbose_name='Pessoa Física',
+        related_name='pessoa_fisica',
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )
     rg = models.CharField('RG',max_length=20)
     cpf = models.IntegerField('CPF', blank=True, null=True)
 
@@ -33,6 +38,15 @@ class PessoaFisica(models.Model):
         verbose_name_plural = 'Pessoas Físicas'
 
 class PessoaJuridica(models.Model):
+
+    pessoa = models.OneToOneField(
+        Pessoa,
+        verbose_name='Pessoa Jurídica',
+        related_name='pessoa_juridica',
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )
+
     cnpj = models.IntegerField('CNPJ', blank=True, null=True)
     razao_social = models.CharField('Razão Social',max_length=200)
     nome_fantasia = models.CharField('Nome Fantasia',max_length=200)

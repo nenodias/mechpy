@@ -44,7 +44,6 @@ class PessoaJuridicaSerializer(serializers.ModelSerializer):
     class Meta:
         model = PessoaJuridica
         fields = (
-            'id',
             'cnpj',
             'razao_social', 
             'nome_fantasia',
@@ -56,29 +55,33 @@ class PessoaJuridicaSerializer(serializers.ModelSerializer):
 class PessoaFisicaSerializer(serializers.ModelSerializer):
     class Meta:
         model = PessoaFisica
-        fields = ('id','rg','cpf')
+        fields = ('rg','cpf')
 
 class PessoaSerializer(serializers.ModelSerializer):
 
-    pessoa_juridica = PessoaJuridicaSerializer()
-    pessoa_fisica = PessoaFisicaSerializer()
-    contatos = ContatoSerializer()
-    enderecos = EnderecoSerializer()
+    pessoa_juridica = PessoaJuridicaSerializer(required=False)
+    pessoa_fisica = PessoaFisicaSerializer(required=False)
+    contatos = ContatoSerializer(many=True, required=False)
+    enderecos = EnderecoSerializer(many=True, required=False)
 
     def create(self, validated_data):
+        relacionamentos = ['pessoa_juridica', 'pessoa_fisica', 'contatos', 'enderecos']
+        dicionarios = {}
+        for relacao in relacionamentos:
+            try:
+                dicionarios[relacao] = None
+                dicionarios[relacao] = validated_data.pop(relacao)
+            except:
+                pass
         pessoa = Pessoa.objects.create(**validated_data)
-        try:
-            pessoa_juridica_data = validated_data.pop('pessoa_juridica')
-            PessoaJuridica.create(pessoa=pessoa, **pessoa_juridica_data)
+        if dicionarios['pessoa_juridica']:
+            pessoa_juridica = PessoaJuridica.objects.create(**dicionarios['pessoa_juridica'])
+            pessoa.pessoa_juridica = pessoa_juridica
             pessoa.tipo = Pessoa.TIPO_PESSOA_JURIDICA
-        except:
-            pass
-        try:
-            pessoa_fisica_data = validated_data.pop('pessoa_fisica')
-            PessoaFisica.create(pessoa=pessoa, **pessoa_fisica_data)
+        if dicionarios['pessoa_fisica']:
+            pessoa_fisica = PessoaFisica.objects.create(**dicionarios['pessoa_fisica'])
+            pessoa.pessoa_fisica = pessoa_fisica
             pessoa.tipo = Pessoa.TIPO_PESSOA_FISICA
-        except:
-            pass
         return pessoa
 
     def update(self, instance, validated_data):

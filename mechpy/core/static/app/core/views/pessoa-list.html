@@ -1,0 +1,25 @@
+<div class="row" ng-controller="ListPessoaController">
+  <h2>Listagem de Pessoas</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th width="200">Nome</th>
+        <th>Telefone</th>
+        <th width="150">Celular</th>
+        <th width="150">Email</th>
+        <th width="150">Tipo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="pessoa in pessoas">
+        <td>{{ pessoa.id }}</td>
+        <td>{{ pessoa.nome }}</td>
+        <td>{{ pessoa.telefone }}</td>
+        <td>{{ pessoa.celular }}</td>
+        <td>{{ pessoa.email }}</td>
+        <td>{{ pessoa.tipo }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

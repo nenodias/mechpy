@@ -122,6 +122,10 @@ AUTH_PASSWORD_VALIDATORS = [
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
+    'DEFAULT_PAGINATION_CLASS': 'mechpy.core.pagination.CustomPagination',
+    'PAGE_SIZE': 100,
+    'PAGE_SIZE_QUERY_PARAM':'page_size',
+    'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',),
     'DEFAULT_PERMISSION_CLASSES': [
         #'rest_framework.permissions.IsAuthenticated',
         'rest_framework.permissions.AllowAny',
@@ -133,6 +137,7 @@ REST_FRAMEWORK = {
         #'rest_framework.authentication.SessionAuthentication',
     )
 }
+
 
 LANGUAGE_CODE = 'pt-br'
 

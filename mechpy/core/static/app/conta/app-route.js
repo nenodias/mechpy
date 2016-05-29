@@ -13,7 +13,7 @@
         }
       })
       .state('dinamico', {
-        url: '/{modulo}/{nome}/{id:[/d+]}',
+        url: '/{modulo}/{nome}/{id}',
         params:{modulo:null, nome:null, id:null},
         templateUrl: 'static/app/conta/views/home.html',
         controller: 'HomeController',
