@@ -25,7 +25,7 @@
         <td>{{ pessoa.telefone }}</td>
         <td>{{ pessoa.celular }}</td>
         <td>{{ pessoa.email }}</td>
-        <td>{{ pessoa.tipo }}</td>
+        <td>{{ pessoa.tipo === TIPO_PESSOA_FISICA.id ? TIPO_PESSOA_FISICA.nome : TIPO_PESSOA_JURIDICA.nome }}</td>
         <td>
           <a href="#/core/pessoa/{{ pessoa.id }}" class="button tiny">
             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>

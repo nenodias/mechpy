@@ -16,7 +16,7 @@ class Pessoa(models.Model):
     telefone = models.CharField('Telefone',max_length=20, blank=True, null=True)
     celular = models.CharField('Celular',max_length=20, blank=True, null=True)
     email = models.EmailField('Email', blank=True, null=True)
-    tipo = models.CharField('Tipo',max_length=2, blank=False, null=False, choices=TIPO_PESSOA)
+    tipo = models.CharField('Tipo',max_length=2, choices=TIPO_PESSOA)
 
     class Meta:
         verbose_name = 'Pessoa'
@@ -30,7 +30,7 @@ class PessoaFisica(models.Model):
         on_delete=models.CASCADE,
         primary_key=True,
     )
-    rg = models.CharField('RG',max_length=20)
+    rg = models.CharField('RG',max_length=20, blank=True, null=True)
     cpf = models.IntegerField('CPF', blank=True, null=True)
 
     class Meta:
@@ -48,11 +48,11 @@ class PessoaJuridica(models.Model):
     )
 
     cnpj = models.IntegerField('CNPJ', blank=True, null=True)
-    razao_social = models.CharField('Razão Social',max_length=200)
-    nome_fantasia = models.CharField('Nome Fantasia',max_length=200)
-    descricao = models.CharField('Descrição',max_length=200)
-    inscricao_estadual = models.CharField('Inscrição Estadual',max_length=30)
-    inscricao_municipal = models.CharField('Inscrição Municipal',max_length=30)
+    razao_social = models.CharField('Razão Social',max_length=200, blank=True, null=True)
+    nome_fantasia = models.CharField('Nome Fantasia',max_length=200, blank=True, null=True)
+    descricao = models.CharField('Descrição',max_length=200, blank=True, null=True)
+    inscricao_estadual = models.CharField('Inscrição Estadual',max_length=30, blank=True, null=True)
+    inscricao_municipal = models.CharField('Inscrição Municipal',max_length=30, blank=True, null=True)
 
     class Meta:
         verbose_name = 'Pessoa Jurídica'

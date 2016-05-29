@@ -3,19 +3,49 @@
     angular.module('core')
     
     .controller('PessoaController', ['$stateParams', 'PessoaService','$scope', function($stateParams, PessoaService, $scope){
-        $scope.pessoa = {};
-        var TIPO_PESSOA_FISICA = { id: 'PF', name: 'Pessoa Física' };
-        var TIPO_PESSOA_JURIDICA = { id: 'PJ', name: 'Pessoa Jurídica' };
+        var getNewEntity = function (){
+            return { "contatos" :[], "enderecos":[], "pessoa_fisica":{},"pessoa_juridica":{} };
+        }
+        $scope.pessoa = getNewEntity();
+        
+        var TIPO_PESSOA_FISICA = PessoaService.TIPO_PESSOA_FISICA;
+        var TIPO_PESSOA_JURIDICA = PessoaService.TIPO_PESSOA_JURIDICA;
+        
         $scope.tipos = [ TIPO_PESSOA_FISICA, TIPO_PESSOA_JURIDICA ];
+
         PessoaService.findById($stateParams.id).then(function(data){
             $scope.pessoa = data;
         });
+
+        $scope.submit = function(){
+            if( $scope.pessoa.id === null ){
+                console.log('Inserindo novo registro ', $scope.pessoa)
+                PessoaService.create($scope.pessoa)
+                .then(function(data){
+                    console.log(data);
+                });
+            } else {
+                console.log('Atualizando novo registro ', $scope.pessoa)
+                PessoaService.update($scope.pessoa, $scope.pessoa.id)
+                .then(function(data){
+                    console.log(data);
+                });
+            }
+            $scope.reset();
+        };
+        $scope.reset = function(){
+            $scope.pessoa = getNewEntity();
+            $scope.formulario.$setPristine();
+        };
+
     }])
 
     .controller('ListPessoaController', ['PessoaService','$scope', function(PessoaService, $scope){
         $scope.pessoas = [];
         var page = 1;
         var limit = 10;
+        $scope.TIPO_PESSOA_FISICA = PessoaService.TIPO_PESSOA_FISICA;
+        $scope.TIPO_PESSOA_JURIDICA = PessoaService.TIPO_PESSOA_JURIDICA;
         PessoaService.fetchAll(page, limit).then(function(data){
             $scope.pessoas = data.results;
         });

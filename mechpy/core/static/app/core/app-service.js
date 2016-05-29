@@ -6,13 +6,10 @@
         var raiz = '';
         var api = '/api/pessoas/';
         var sep = '/';
-        var config = {
-            headers:  {
-                'Authorization': 'Token '+$rootScope.user.token,
-                'Content-Type':'application/json; charset=utf-8',
-                'Accept': 'application/json; charset=utf-8'
-            }
-        };
+        var config = $rootScope.config;
+
+        var TIPO_PESSOA_FISICA = { id: 'PF', nome: 'Pessoa Física' };
+        var TIPO_PESSOA_JURIDICA = { id: 'PJ', nome: 'Pessoa Jurídica' };
 
         var trataResposta = function(response){
             return response.data;
@@ -24,12 +21,34 @@
             };
             return retorno; 
         };
+
+        var tratativaTipoPessoa = function(entity){
+            if(entity.tipo === TIPO_PESSOA_FISICA.id){
+                entity.pessoa_juridica = {};
+                delete entity.pessoa_juridica;
+            }else if(entity.tipo === TIPO_PESSOA_JURIDICA.id){
+                entity.pessoa_fisica = {};
+                delete entity.pessoa_fisica;
+            }
+            return entity;
+        };
+
         return {
+            TIPO_PESSOA_FISICA: TIPO_PESSOA_FISICA,
+            TIPO_PESSOA_JURIDICA: TIPO_PESSOA_JURIDICA,
             findById: function(id){
                 var filtros = '';
                 return $http.get(raiz + api + id + sep, config)
                 .then(
-                    trataResposta,
+                    function(response){
+                        var entity = response.data;
+                        if(entity.tipo === TIPO_PESSOA_FISICA.id){
+                            entity.pessoa_juridica = {};
+                        }else if(entity.tipo === TIPO_PESSOA_JURIDICA.id){
+                            entity.pessoa_fisica = {};
+                        }
+                        return response.data;
+                    },
                     trataErro('Erro ao carregar registros')
                 );
             },
@@ -45,6 +64,7 @@
                 );
             },
             create: function(entity){
+                entity = tratativaTipoPessoa(entity);
                 return $http.post(raiz + api, entity, config)
                 .then(
                     trataResposta,
@@ -52,6 +72,7 @@
                 );
             },
             update: function(entity, id){
+                entity = tratativaTipoPessoa(entity);
                 return $http.put(raiz + api + id + sep, entity, config)
                 .then(
                     trataResposta,

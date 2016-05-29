@@ -25,6 +25,7 @@
                   'Accept': 'application/json'
                 }
               };
+              $rootScope.config = config;
               $http.get('/api/users/'+username+'/', config).then(function(response){
                 var d = response.data;
                 $rootScope.user = {'token':token,'username':d.username,'email':d.email, 'name':d.name };

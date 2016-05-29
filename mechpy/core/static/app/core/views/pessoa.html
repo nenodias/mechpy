@@ -1,11 +1,11 @@
-<form ng-controller="PessoaController">
+<form ng-controller="PessoaController" name="formulario" id="formulario" ng-submit="submit()">
   <div class="row panel clearfix">
     <h2 class="left">Listagem de Pessoas</h2>
     
-    <a href="#/core/pessoa/" class="button success tiny right">
+    <button type="submit" class="button success tiny right">
       <i class="fa fa-floppy-o" aria-hidden="true"></i>
       Salvar
-    </a>
+    </button>
     <a href="#/core/pessoa-list/" class="button primary tiny right">
       <i class="fa fa-times" aria-hidden="true"></i>
       Voltar
@@ -21,7 +21,7 @@
   <div class="row">
     <div class="large-12 columns">
       <label>Nome
-        <input type="text" ng-model="pessoa.nome" placeholder="Nome" />
+        <input type="text" ng-model="pessoa.nome" placeholder="Nome" required="required" maxlength="200" />
       </label>
     </div>
   </div>
@@ -42,45 +42,73 @@
   <div class="row">
     <div class="large-6 columns">
       <label>Telefone
-        <input type="text" ng-model="pessoa.telefone" placeholder="Telefone" />
+        <input type="text" ng-model="pessoa.telefone" placeholder="Telefone" maxlength="20" />
       </label>
     </div>
     <div class="large-6 columns">
       <label>Celular
-        <input type="text" ng-model="pessoa.celular" placeholder="Celular" />
+        <input type="text" ng-model="pessoa.celular" placeholder="Celular" maxlength="20" />
       </label>
     </div>
   </div>
   <div class="row">
     <div class="large-12 columns">
       <label>Tipo
-        <select ng-model="pessoa.tipo" ng-options="item.id as item.name for item in tipos">
+        <select ng-model="pessoa.tipo" ng-options="item.id as item.nome for item in tipos" required="required">
         </select>
       </label>
     </div>
   </div>
-  <div class="row">
+  <div class="row" ng-show="pessoa.tipo == 'PF' ">
     <div class="large-6 columns">
-      <label>Choose Your Favorite</label>
-      <input type="radio" name="pokemon" value="Red" id="pokemonRed"><label for="pokemonRed">Red</label>
-      <input type="radio" name="pokemon" value="Blue" id="pokemonBlue"><label for="pokemonBlue">Blue</label>
+      <label>RG
+        <input type="text" ng-model="pessoa.pessoa_fisica.rg" placeholder="RG" maxlength="20" />
+      </label>
     </div>
     <div class="large-6 columns">
-      <label>Check these out</label>
-      <input id="checkbox1" type="checkbox"><label for="checkbox1">Checkbox 1</label>
-      <input id="checkbox2" type="checkbox"><label for="checkbox2">Checkbox 2</label>
-    </div>
-  </div>
-  <div class="row">
-    <div class="large-12 columns">
-      <label>Textarea Label
-        <textarea placeholder="small-12.columns"></textarea>
+      <label>CPF
+        <input type="number" ng-model="pessoa.pessoa_fisica.cpf" placeholder="CPF" />
       </label>
     </div>
   </div>
-  <div class="row">
-    <div class="large-12 columns">
-      &nbsp;
+  <div ng-show="pessoa.tipo == 'PJ' ">
+    <div class="row">
+      <div class="large-6 columns">
+        <label>CNPJ
+          <input type="number" ng-model="pessoa.pessoa_juridica.cnpj" placeholder="CNPJ" />
+        </label>
+      </div>
+      <div class="large-6 columns">
+        <label>Razão Social
+          <input type="text" ng-model="pessoa.pessoa_juridica.razao_social" placeholder="Razão Social" />
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+        <label>Nome Fantasia
+          <input type="text" ng-model="pessoa.pessoa_juridica.nome_fantasia" placeholder="Nome Fantasia" maxlength="200" />
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+        <label>Descrição
+          <input type="text" ng-model="pessoa.pessoa_juridica.descricao" placeholder="Descrição" maxlength="200" />
+        </label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-6 columns">
+        <label>Inscrição Estadual
+          <input type="number" ng-model="pessoa.pessoa_juridica.inscricao_estadual" placeholder="Inscrição Estadual" maxlength="30" />
+        </label>
+      </div>
+      <div class="large-6 columns">
+        <label>Inscrição Municipal
+          <input type="number" ng-model="pessoa.pessoa_juridica.inscricao_municipal" placeholder="Inscrição Municipal" maxlength="30" />
+        </label>
+      </div>
     </div>
   </div>
 </form>
