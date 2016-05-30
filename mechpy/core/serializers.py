@@ -17,11 +17,11 @@ class CidadeSerializer(serializers.HyperlinkedModelSerializer):
         model = Cidade
         fields = ('id','nome','codigo_ibge', 'estado')
 
-
 class ContatoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contato
         fields = ('id','nome','email', 'telefone')
+        extra_kwargs = {'id': {'read_only': False, 'required':False, 'allow_null':True}}
 
 class EnderecoSerializer(serializers.ModelSerializer):
 
@@ -75,22 +75,7 @@ class PessoaSerializer(serializers.ModelSerializer):
                 pass
         return dicionarios
 
-    def create(self, validated_data):
-        dicionarios = self.get_dicionario_relacoes(validated_data)
-        pessoa = Pessoa.objects.create(**validated_data)
-        if dicionarios['pessoa_juridica']:
-            pessoa_juridica = PessoaJuridica.objects.create(**dicionarios['pessoa_juridica'])
-            pessoa.pessoa_juridica = pessoa_juridica
-            pessoa.tipo = Pessoa.TIPO_PESSOA_JURIDICA
-        if dicionarios['pessoa_fisica']:
-            pessoa_fisica = PessoaFisica.objects.create(**dicionarios['pessoa_fisica'])
-            pessoa.pessoa_fisica = pessoa_fisica
-            pessoa.tipo = Pessoa.TIPO_PESSOA_FISICA
-        return pessoa
-
-    def update(self, instance, validated_data):
-        dicionarios = self.get_dicionario_relacoes(validated_data)
-        pessoa = super(PessoaSerializer, self).update(instance, validated_data)
+    def insert_or_update(self, pessoa, dicionarios):
         if dicionarios['pessoa_juridica']:
             try:
                 pessoa.pessoa_fisica.delete()
@@ -107,6 +92,34 @@ class PessoaSerializer(serializers.ModelSerializer):
             pessoa_fisica = PessoaFisica.objects.create(**dicionarios['pessoa_fisica'])
             pessoa.pessoa_fisica = pessoa_fisica
             pessoa.tipo = Pessoa.TIPO_PESSOA_FISICA
+        if dicionarios['contatos']:
+            pk_novos = []
+            for contato_data in dicionarios['contatos']:
+                if 'id' in contato_data.keys():
+                    pk = contato_data.pop('id')
+                    contato = Contato(pessoa=pessoa,**contato_data)
+                    contato.id = pk
+                    contato.save()
+                else:
+                    contato = Contato.objects.create(pessoa=pessoa,**contato_data)
+                pk_novos.append(contato.pk)
+            if pk_novos:
+                contatos_a_excluir = Contato.objects.filter(pessoa=pessoa).exclude(id__in=pk_novos)
+                if contatos_a_excluir:
+                    for contato_deletar in contatos_a_excluir:
+                        contato_deletar.delete()
+        return pessoa
+
+    def create(self, validated_data):
+        dicionarios = self.get_dicionario_relacoes(validated_data)
+        pessoa = Pessoa.objects.create(**validated_data)
+        pessoa = self.insert_or_update(pessoa, dicionarios)
+        return pessoa
+
+    def update(self, instance, validated_data):
+        dicionarios = self.get_dicionario_relacoes(validated_data)
+        pessoa = super(PessoaSerializer, self).update(instance, validated_data)
+        pessoa = self.insert_or_update(pessoa, dicionarios)
         return pessoa
 
     class Meta:
