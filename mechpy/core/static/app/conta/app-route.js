@@ -5,7 +5,7 @@
       $stateProvider
       .state('home', {
         url: '/',
-        params:{modulo:null, nome:null, id:null},
+        params:{modulo:null, nome:null, id:null, alerts:null},
         templateUrl: 'static/app/conta/views/home.html',
         controller: 'HomeController',
         acesso:{
@@ -14,7 +14,7 @@
       })
       .state('dinamico', {
         url: '/{modulo}/{nome}/{id}',
-        params:{modulo:null, nome:null, id:null},
+        params:{modulo:null, nome:null, id:null, alerts:null},
         templateUrl: 'static/app/conta/views/home.html',
         controller: 'HomeController',
         acesso:{

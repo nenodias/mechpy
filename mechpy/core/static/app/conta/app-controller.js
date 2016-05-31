@@ -10,6 +10,9 @@
         if($stateParams.id !== null){
             $scope.entidadeId = $stateParams.id;
         }
+        if($stateParams.alerts !== null){
+            $scope.alerts = $stateParams.alerts;
+        }
         $scope.item1 = true;
         $scope.item2 = true;
     }])

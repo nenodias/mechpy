@@ -1,3 +1,25 @@
+
+input.ng-valid.ng-pristine,
+select.ng-valid.ng-pristine,
+textarea.ng-valid.ng-pristine{
+  border-color: inherit !important;
+}
+input.ng-valid,
+select.ng-valid,
+textarea.ng-valid {
+  border-color: lightgreen !important;
+}
+input.ng-invalid,
+select.ng-invalid
+textarea.ng-invalid,
+input.ng-dirty.ng-invalid-required, 
+select.ng-dirty.ng-invalid-required, 
+textarea.ng-dirty.ng-invalid-required, 
+input.ng-dirty.ng-invalid-required,
+select.ng-dirty.ng-invalid-required,
+textarea.ng-dirty.ng-invalid-required {
+  border-color: red !important;
+}
 .max-width{
   width: 100% !important;
 }
