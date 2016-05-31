@@ -15,6 +15,10 @@
         }
         $scope.item1 = true;
         $scope.item2 = true;
+        
+        $scope.closeAlert = function(index){
+            $scope.alerts.splice(index, 1);
+        };
     }])
     .controller('LoginController', ['LoginService', '$scope', function(LoginService, $scope){
         var self = this;

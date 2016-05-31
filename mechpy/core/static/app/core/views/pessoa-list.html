@@ -1,12 +1,12 @@
 <div class="row" ng-controller="ListPessoaController">
   <div class="panel clearfix">
     <h2 class="left">Listagem de Pessoas</h2>
-    <a href="#/core/pessoa/" class="button success tiny right">
+    <a ui-sref="dinamico({'modulo':'core', 'nome':'pessoa'})" class="button success tiny right">
       <i class="fa fa-plus-circle" aria-hidden="true"></i>
       Novo
     </a>
   </div>
-  <table>
+  <table class="max-width">
     <thead>
       <tr>
         <th>Id</th>
@@ -27,7 +27,7 @@
         <td>{{ pessoa.email }}</td>
         <td>{{ pessoa.tipo === TIPO_PESSOA_FISICA.id ? TIPO_PESSOA_FISICA.nome : TIPO_PESSOA_JURIDICA.nome }}</td>
         <td>
-          <a href="#/core/pessoa/{{ pessoa.id }}" class="button tiny">
+          <a ui-sref="dinamico({'modulo':'core', 'nome':'pessoa','id':pessoa.id})" class="button tiny">
             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
           </a>
         </td>

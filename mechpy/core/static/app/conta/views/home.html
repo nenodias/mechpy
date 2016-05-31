@@ -21,9 +21,11 @@
             </aside>
             
             <section class="conteudo">
-                <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">
-                  {{ alert.msg }}
-                </alert>
+                <div class="row">
+                    <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">
+                      {{ alert.msg }}
+                    </alert>
+                </div>
                 <div ng-if="template_name" ng-include="template_name"></div>
             </section>
 

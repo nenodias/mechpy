@@ -2,7 +2,7 @@
     'use strict';
     angular.module('core')
     
-    .controller('PessoaController', ['$stateParams', 'PessoaService','$scope', function($stateParams, PessoaService, $scope){
+    .controller('PessoaController', ['$state','$stateParams', 'PessoaService','$scope', function($state, $stateParams, PessoaService, $scope){
         $scope.pessoa = PessoaService.getNewEntity();
         
         var TIPO_PESSOA_FISICA = PessoaService.TIPO_PESSOA_FISICA;
@@ -24,15 +24,20 @@
                 PessoaService.create($scope.pessoa)
                 .then(function(data){
                     console.log(data);
+                    var alerts = [];
+                    alerts.push({type:'success',msg: "Registro inserido com sucesso!"});
+                    $state.go('dinamico',{modulo:'core', nome:'pessoa-list', id:null, alerts: alerts });
                 });
             } else {
                 console.log('Atualizando novo registro ', $scope.pessoa)
                 PessoaService.update($scope.pessoa, $scope.pessoa.id)
                 .then(function(data){
                     console.log(data);
+                    var alerts = [];
+                    alerts.push({type:'success',msg: "Registro atualizado com sucesso!"});
+                    $state.go('dinamico',{modulo:'core', nome:'pessoa-list', id:null, alerts: alerts });
                 });
             }
-            $scope.reset();
         };
         $scope.reset = function(){
             $scope.pessoa = PessoaService.getNewEntity();
