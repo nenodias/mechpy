@@ -1,4 +1,6 @@
-<!doctype html>
+.max-width{
+  width: 100% !important;
+}
 .off-canvas-wrap, .off-canvas-wrap > .inner-wrap {
   min-height: 100vh;
 }

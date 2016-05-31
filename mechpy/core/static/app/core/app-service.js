@@ -36,6 +36,21 @@
         return {
             TIPO_PESSOA_FISICA: TIPO_PESSOA_FISICA,
             TIPO_PESSOA_JURIDICA: TIPO_PESSOA_JURIDICA,
+            getNewEntity: function (){
+                return {
+                    "contatos" :[],
+                    "enderecos":[],
+                    "pessoa_fisica":{},
+                    "pessoa_juridica":{}
+                };
+            },
+            getNewContato: function (){
+                return {
+                    "nome" :null,
+                    "email":null,
+                    "telefone":null,
+                };
+            },
             findById: function(id){
                 var filtros = '';
                 return $http.get(raiz + api + id + sep, config)

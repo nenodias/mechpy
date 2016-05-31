@@ -61,7 +61,7 @@ class PessoaJuridica(models.Model):
 class Contato(models.Model):
     nome = models.CharField('Nome',max_length=20)
     email = models.EmailField('Email', blank=True, null=True)
-    telefone = models.CharField('Telefone',max_length=20)
+    telefone = models.CharField('Telefone',max_length=20, blank=True, null=True)
     pessoa = models.ForeignKey('Pessoa', related_name='contatos')
 
     class Meta:
