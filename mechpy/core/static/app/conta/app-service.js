@@ -13,18 +13,23 @@
           $state.go('login');
         };
 
+        servico.getConfig = function(token){
+          var config = {
+            headers:  {
+              'Authorization': 'Token '+token,
+              'Content-type': 'application/json',
+              'Accept': 'application/json'
+            }
+          };
+          return config;
+        };
+
         servico.logon = function(username, password){
           var d1 = $q.defer();
           $http.post('/api/token/',{'username':username, 'password':password})
           .then(function successCallback(response) {
               var token = response.data.token;
-              var config = {
-                headers:  {
-                  'Authorization': 'Token '+token,
-                  'Content-type': 'application/json',
-                  'Accept': 'application/json'
-                }
-              };
+              var config = servico.getConfig(token);
               $rootScope.config = config;
               $http.get('/api/users/'+username+'/', config).then(function(response){
                 var d = response.data;
@@ -48,10 +53,12 @@
               }catch(exx){
                 
               }
+              console.log($cookies.get('user'));
               if(permissao_necessaria){
                 if ($cookies.get('user') !== undefined ){
                   //console.log('Cookie ' + $cookies.get('user'));
                   $rootScope.user = JSON.parse( $cookies.get('user') );
+                  $rootScope.config = servico.getConfig($rootScope.user.token);
                   //console.log('Value ' +$rootScope.user);
                   //console.log('Ok  autenticacao');
                   return true;

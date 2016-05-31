@@ -10,9 +10,11 @@
         
         $scope.tipos = [ TIPO_PESSOA_FISICA, TIPO_PESSOA_JURIDICA ];
 
-        PessoaService.findById($stateParams.id).then(function(data){
-            $scope.pessoa = data;
-        });
+        if($stateParams.id !== null){
+            PessoaService.findById($stateParams.id).then(function(data){
+                $scope.pessoa = data;
+            });
+        }
 
         $scope.edit = {};
 

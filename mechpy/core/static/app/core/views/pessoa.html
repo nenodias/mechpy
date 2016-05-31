@@ -110,50 +110,50 @@
         </label>
       </div>
     </div>
-    <div class="row">
-      <div class="panel clearfix">
-        <h2 class="left">Contatos</h2>
-        <button ng-click="adicionarContato()" type="button" class="button success tiny right">
-          <i class="fa fa-plus-circle" aria-hidden="true"></i>
-          Novo
-        </buttion>
-      </div>
-      <table class="max-width">
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Telefone</th>
-            <th width="200"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr  ng-repeat="contato in pessoa.contatos">
-            <td>
-              <span ng-show="edit[$index]">{{ contato.nome }}</span>
-              <input type="hidden" ng-model="contato.id" />
-              <input ng-hide="edit[$index]" type="text" ng-model="contato.nome" placeholder="Nome" required="required" maxlength="20" />
-            </td>
-            <td>
-              <span ng-show="edit[$index]">{{ contato.email }}</span>
-              <input ng-hide="edit[$index]" type="text" ng-model="contato.email" placeholder="E-mail" />
-            </td>
-            <td>
-              <span ng-show="edit[$index]">{{ contato.telefone }}</span>
-              <input ng-hide="edit[$index]" type="text" ng-model="contato.telefone" placeholder="Telefone" maxlength="20" />
-            </td>
-            <td>
-              <button type="button" ng-click="editarContato($index)" class="button tiny">
-                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-              </button>
-              <button type="button" ng-click="removerContato($index)" class="button alert tiny right">
-                <i class="fa fa-minus-circle" aria-hidden="true"></i>
-                Remover
-              </buttion>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+  </div>
+  <div class="row">
+    <div class="panel clearfix">
+      <h2 class="left">Contatos</h2>
+      <button ng-click="adicionarContato()" type="button" class="button success tiny right">
+        <i class="fa fa-plus-circle" aria-hidden="true"></i>
+        Novo
+      </buttion>
     </div>
+    <table class="max-width">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Telefone</th>
+          <th width="200"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr  ng-repeat="contato in pessoa.contatos">
+          <td>
+            <span ng-show="edit[$index]">{{ contato.nome }}</span>
+            <input type="hidden" ng-model="contato.id" />
+            <input ng-hide="edit[$index]" type="text" ng-model="contato.nome" placeholder="Nome" required="required" maxlength="20" />
+          </td>
+          <td>
+            <span ng-show="edit[$index]">{{ contato.email }}</span>
+            <input ng-hide="edit[$index]" type="text" ng-model="contato.email" placeholder="E-mail" />
+          </td>
+          <td>
+            <span ng-show="edit[$index]">{{ contato.telefone }}</span>
+            <input ng-hide="edit[$index]" type="text" ng-model="contato.telefone" placeholder="Telefone" maxlength="20" />
+          </td>
+          <td>
+            <button type="button" ng-click="editarContato($index)" class="button tiny">
+              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            </button>
+            <button type="button" ng-click="removerContato($index)" class="button alert tiny right">
+              <i class="fa fa-minus-circle" aria-hidden="true"></i>
+              Remover
+            </buttion>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </form>
