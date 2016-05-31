@@ -30,7 +30,9 @@
           .then(function successCallback(response) {
               var token = response.data.token;
               var config = servico.getConfig(token);
+              
               $rootScope.config = config;
+              
               $http.get('/api/users/'+username+'/', config).then(function(response){
                 var d = response.data;
                 $rootScope.user = {'token':token,'username':d.username,'email':d.email, 'name':d.name };
@@ -38,8 +40,8 @@
                 $state.go('home');
                 d1.resolve();
               });
+
           }, function errorCallback(response) {
-              //FAULT
               servico.logoff();
               d1.resolve(false);
           });
@@ -47,31 +49,22 @@
         };
 
         servico.permissao = function(){
-             var permissao_necessaria = false;
-             try{
-                permissao_necessaria = $rootScope.current.acesso.requerido;
-              }catch(exx){
-                
-              }
-              console.log($cookies.get('user'));
-              if(permissao_necessaria){
-                if ($cookies.get('user') !== undefined ){
-                  //console.log('Cookie ' + $cookies.get('user'));
-                  $rootScope.user = JSON.parse( $cookies.get('user') );
-                  $rootScope.config = servico.getConfig($rootScope.user.token);
-                  //console.log('Value ' +$rootScope.user);
-                  //console.log('Ok  autenticacao');
-                  return true;
-                }else{
-                  //console.log('Falha de autenticacao');
-                  return false;
-                }
-              }else{
-                return true;
-              }
+          var permissao_necessaria = false || $rootScope.current.acesso.requerido;
+          if(permissao_necessaria){
+            if ($cookies.get('user') !== undefined ){
+
+              $rootScope.user = JSON.parse( $cookies.get('user') );
+              $rootScope.config = servico.getConfig($rootScope.user.token);
+              return true
+            }else{
               return false;
-         };
-         return servico;
+            }
+          }else{
+            return true;
+          }
+          return false;
+        };
+        return servico;
     }]);
 
  })();

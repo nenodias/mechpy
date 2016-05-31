@@ -38,6 +38,9 @@
             TIPO_PESSOA_JURIDICA: TIPO_PESSOA_JURIDICA,
             getNewEntity: function (){
                 return {
+                    "id":null,
+                    "nome":null,
+                    "tipo":null,
                     "contatos" :[],
                     "enderecos":[],
                     "pessoa_fisica":{},
