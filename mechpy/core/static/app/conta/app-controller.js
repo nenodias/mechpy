@@ -12,6 +12,7 @@
         }
         if($stateParams.alerts !== null){
             $scope.alerts = $stateParams.alerts;
+            $stateParams.alerts = null;
         }
         $scope.item1 = true;
         $scope.item2 = true;
