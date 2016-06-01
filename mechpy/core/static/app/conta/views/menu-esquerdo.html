@@ -7,8 +7,8 @@
               Item 1
               <i ng-class="{'fa fa-chevron-down': item1, 'fa fa-chevron-right': !item1}"></i>
         </accordion-heading>
-        <a href="#">
-          Botão 1 <i class="fa fa-download"></i>
+        <a ui-sref="dinamico({'modulo':'core', 'nome':'pessoa-list'})">
+          Cadastro de Pessoa<i class="fa fa-download"></i>
         </a>
       </accordion-group>
       <accordion-group is-open="item2">

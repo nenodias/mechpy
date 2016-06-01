@@ -6,7 +6,7 @@
       <i class="fa fa-floppy-o" aria-hidden="true"></i>
       Salvar
     </button>
-    <a href="#/core/pessoa-list/" class="button primary tiny right">
+    <a ui-sref="dinamico({'modulo':'core', 'nome':'pessoa-list'})" class="button primary tiny right">
       <i class="fa fa-times" aria-hidden="true"></i>
       Voltar
     </a>
@@ -120,7 +120,7 @@
         Novo
       </buttion>
     </div>
-    <table class="table-max">
+    <table class="responsive-table">
       <thead>
         <tr>
           <th>Nome</th>
@@ -132,17 +132,24 @@
       <tbody>
         <tr  ng-repeat="contato in pessoa.contatos">
           <td>
-            <span ng-show="edit[$index]">{{ contato.nome }}</span>
+            <span ng-hide="edit[$index]">{{ contato.nome }}</span>
             <input type="hidden" ng-model="contato.id" />
-            <input ng-hide="edit[$index]" type="text" ng-model="contato.nome" placeholder="Nome" required="required" maxlength="20" />
+            <label><span class="hide-for-medium-up">Nome</span>
+              <input ng-show="edit[$index]" type="text" ng-model="contato.nome" placeholder="Nome" required="required" maxlength="
+            20" />
+            </label>
           </td>
           <td>
-            <span ng-show="edit[$index]">{{ contato.email }}</span>
-            <input ng-hide="edit[$index]" type="email" ng-model="contato.email" placeholder="E-mail" />
+            <span ng-hide="edit[$index]">{{ contato.email }}</span>
+            <label><span class="hide-for-medium-up">Email</span>
+              <input ng-show="edit[$index]" type="email" ng-model="contato.email" placeholder="E-mail" />
+            </label>
           </td>
           <td>
-            <span ng-show="edit[$index]">{{ contato.telefone }}</span>
-            <input ng-hide="edit[$index]" type="text" ng-model="contato.telefone" placeholder="Telefone" maxlength="20" />
+            <span ng-hide="edit[$index]">{{ contato.telefone }}</span>
+            <label><span class="hide-for-medium-up">Telefone</span>
+              <input ng-show="edit[$index]" type="text" ng-model="contato.telefone" placeholder="Telefone" maxlength="20" />
+            </label>
           </td>
           <td>
             <button type="button" ng-click="editarContato($index)" class="button tiny">

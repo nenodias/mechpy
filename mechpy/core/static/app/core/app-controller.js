@@ -44,7 +44,8 @@
             $scope.formulario.$setPristine();
         };
 
-        $scope.adicionarContato = function(index){
+        $scope.adicionarContato = function(){
+            var index = $scope.pessoa.contatos.length;
             $scope.pessoa.contatos.push( PessoaService.getNewContato() );
             $scope.edit[index] = true;
         };
