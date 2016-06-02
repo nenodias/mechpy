@@ -38,7 +38,7 @@
                 $rootScope.user = {'token':token,'username':d.username,'email':d.email, 'name':d.name };
                 $cookies.put('user',JSON.stringify( $rootScope.user ) );
                 $state.go('home');
-                d1.resolve();
+                d1.resolve($rootScope.user);
               });
 
           }, function errorCallback(response) {
