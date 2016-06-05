@@ -4,19 +4,146 @@
     <accordion close-others="false">
       <accordion-group heading="Item 1 " is-open="item1">
         <accordion-heading>
-              Item 1
+              <i class="fa fa-th-large"></i> Geral
               <i ng-class="{'fa fa-chevron-down': item1, 'fa fa-chevron-right': !item1}"></i>
         </accordion-heading>
-        <a ui-sref="dinamico({'modulo':'core', 'nome':'pessoa-list'})">
-          Cadastro de Pessoa<i class="fa fa-download"></i>
-        </a>
+
+        <accordion-group>
+          <accordion-heading>
+            <a ui-sref="dinamico({'modulo':'core', 'nome':'pessoa-list'})">
+              <i class="fa fa-users"></i> Cadastro de Pessoa
+            </a>
+          </accordion-heading>
+        </accordion-group>
+
+        <accordion-group>
+          <accordion-heading>
+            <a>
+              <i class="fa fa-font-awesome"></i> Cadastro de País
+            </a>
+          </accordion-heading>
+        </accordion-group>
+
+        <accordion-group>
+          <accordion-heading>
+            <a>
+              <i class="fa fa-cubes"></i> Cadastro de Estado
+            </a>
+          </accordion-heading>
+        </accordion-group>
+
+        <accordion-group>
+          <accordion-heading>
+            <a>
+              <i class="fa fa-cube"></i> Cadastro de Cidade
+            </a>
+          </accordion-heading>
+        </accordion-group>
+
+        <accordion-group>
+          <accordion-heading>
+            <a>
+              <i class="fa fa-rebel"></i> Cadastro de Funcionário
+            </a>
+          </accordion-heading>
+        </accordion-group>
+        
+        <accordion-group>
+          <accordion-heading>
+            <a>
+              <i class="fa fa-money"></i> Faturas
+            </a>
+          </accordion-heading>
+        </accordion-group>
+
+        <accordion-group>
+          <accordion-heading>
+            <a>
+              <i class="fa fa-empire"></i> Gerencial
+            </a>
+          </accordion-heading>
+        </accordion-group>
+
       </accordion-group>
       <accordion-group is-open="item2">
           <accordion-heading>
-              Item 2
+              <!-- fa-car -->
+              <i class="fa fa-wrench"></i> Oficina
               <i ng-class="{'fa fa-chevron-down': item2, 'fa fa-chevron-right': !item2}"></i>
           </accordion-heading>
-          <a href="#">This is just some content to illustrate fancy headings.</a>
+
+          <accordion-group>
+            <accordion-heading>
+            <a>
+              <i class="fa fa-flag"></i> Cadastro de Marca
+            </a>
+            </accordion-heading>
+          </accordion-group>
+
+          <accordion-group>
+            <accordion-heading>
+            <a>
+              <i class="fa fa-road"></i> Cadastro de Modelo
+            </a>
+            </accordion-heading>
+          </accordion-group>
+
+          <accordion-group>
+            <accordion-heading>
+            <a>
+              <i class="fa fa-car"></i> Cadastro de Veículo
+            </a>
+            </accordion-heading>
+          </accordion-group>
+
+          <accordion-group>
+            <accordion-heading>
+            <a>
+              <i class="fa fa-paint-brush"></i> Cadastro de Cor
+            </a>
+            </accordion-heading>
+          </accordion-group>
+
+          <accordion-group>
+            <accordion-heading>
+            <a>
+              <i class="fa fa-cogs"></i> Cadastro de Serviço
+            </a>
+            </accordion-heading>
+          </accordion-group>
+
+          <accordion-group>
+            <accordion-heading>
+            <a>
+              <i class="fa fa-object-group"></i> Cadastro de Categoria
+            </a>
+            </accordion-heading>
+          </accordion-group>
+
+          <accordion-group>
+            <accordion-heading>
+            <a>
+              <i class="fa fa-cog"></i> Cadastro de Produto
+            </a>
+            </accordion-heading>
+          </accordion-group>
+
+          <accordion-group>
+            <accordion-heading>
+            <a>
+              <i class="fa fa-paper-plane-o"></i> Cadastro de Pedido
+            </a>
+            </accordion-heading>
+          </accordion-group>
+
+          <accordion-group>
+            <accordion-heading>
+            <a>
+              <i class="fa fa-shopping-cart"></i> Cadastro de Compra
+            </a>
+            </accordion-heading>
+          </accordion-group>
+
       </accordion-group>
     </accordion>
   </div>
