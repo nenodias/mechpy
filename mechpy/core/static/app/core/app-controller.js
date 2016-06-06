@@ -65,11 +65,13 @@
 
     .controller('ListPessoaController', ['PessoaService','$scope', function(PessoaService, $scope){
         $scope.pessoas = [];
-        var page = 1;
-        var limit = 10;
+        $scope.page = 1;
+        $scope.limit = 10;
+        $scope.count = 0;
         $scope.TIPO_PESSOA_FISICA = PessoaService.TIPO_PESSOA_FISICA;
         $scope.TIPO_PESSOA_JURIDICA = PessoaService.TIPO_PESSOA_JURIDICA;
-        PessoaService.fetchAll(page, limit).then(function(data){
+        PessoaService.fetchAll($scope.page, $scope.limit).then(function(data){
+            $scope.count = data.count;
             $scope.pessoas = data.results;
         });
     }])

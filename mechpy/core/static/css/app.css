@@ -38,6 +38,18 @@ select.ng-dirty.ng-invalid-required,
 textarea.ng-dirty.ng-invalid-required {
   border-color: red !important;
 }
+.my-left-menu .panel{
+  padding: 1.25rem 1.25rem 3em !important;
+}
+.my-left-menu a {
+    display: table;
+    float: left;
+    padding: 7px;
+    position: relative;
+}
+.my-left-menu a:hover{
+
+}
 .max-width{
   width: 100% !important;
 }
@@ -90,17 +102,23 @@ textarea.ng-dirty.ng-invalid-required {
 }
 
 .accordion .accordion-navigation > a,
-.accordion dd > a, 
-.accordion .accordion-navigation > .content.active, 
-.accordion dd > .content.active{
+.accordion dd > a{
  color: #fff !important;
  background:#4d5158 none repeat scroll 0 0 !important;
 }
 
 .accordion .accordion-navigation > a:hover,
-.accordion dd > a:hover, 
-.accordion .accordion-navigation > .content.active:hover, 
-.accordion dd > .content.active:hover{
+.accordion dd > a:hover{
   color: #ccc !important;
   background:#333 none repeat scroll 0 0 !important;
+}
+
+.accordion .accordion-navigation > .content.active, 
+.accordion dd > .content.active,
+.accordion .accordion-navigation, .accordion dd,
+.accordion .accordion-navigation > .content.active:hover, 
+.accordion dd > .content.active:hover{
+  display: table !important;
+  background: none !important;
+  width: 100%;
 }
