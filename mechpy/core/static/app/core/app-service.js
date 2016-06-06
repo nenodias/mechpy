@@ -77,9 +77,7 @@
                 }
                 return $http.get(raiz + api + filtros, config)
                 .then(
-                    function(response){
-                        return response;
-                    },
+                    trataResposta,
                     trataErro('Erro ao carregar registros')
                 );
             },

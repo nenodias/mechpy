@@ -68,9 +68,13 @@
         $scope.page = 1;
         $scope.limit = 10;
         $scope.count = 0;
+        $scope.current = 0;
+
         $scope.TIPO_PESSOA_FISICA = PessoaService.TIPO_PESSOA_FISICA;
         $scope.TIPO_PESSOA_JURIDICA = PessoaService.TIPO_PESSOA_JURIDICA;
+        
         PessoaService.fetchAll($scope.page, $scope.limit).then(function(data){
+            $scope.current = ($scope.page * $scope.limit) - $scope.limit + data.results.length;
             $scope.count = data.count;
             $scope.pessoas = data.results;
         });
