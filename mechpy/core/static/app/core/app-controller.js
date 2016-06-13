@@ -72,7 +72,29 @@
 
         $scope.TIPO_PESSOA_FISICA = PessoaService.TIPO_PESSOA_FISICA;
         $scope.TIPO_PESSOA_JURIDICA = PessoaService.TIPO_PESSOA_JURIDICA;
+
+        $scope.headers = [
+            { body:'Id'},
+            { attr:'width="200"',body:'Nome'},
+            { body:'Telefone'},
+            { attr:'width="150"',body:'Celular'},
+            { attr:'width="150"',body:'Email'},
+            { attr:'width="150"',body:'Tipo'},
+            {}
+        ];
         
+        $scope.metadata = [
+            { modelo:'id'},
+            { modelo:'nome'},
+            { modelo:'telefone'},
+            { modelo:'celular'},
+            { modelo:'email'},
+            { modelo:'tipo'},
+            { 
+                html: "<a> botão</a>"
+            }
+        ];
+        $scope.pessoaService = PessoaService;
         PessoaService.fetchAll($scope.page, $scope.limit).then(function(data){
             $scope.current = ($scope.page * $scope.limit) - $scope.limit + data.results.length;
             $scope.count = data.count;

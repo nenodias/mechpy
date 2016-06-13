@@ -1,4 +1,31 @@
-<div>
-Teste
-<p ng-transclude></p>
-</div>
+<table class="max-table">
+    <thead>
+        <tr>
+            <th ng-repeat="head in headers" {{ head.attr }}">
+                {{ head.body }}
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="dado in dados">
+            <td ng-repeat="metadado in metadata" {{ metadado.attr }}>
+                {{ !metadado.html ? dado[metadado.modelo] : '' }}
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="7">
+          Mostrando {{ current }} do total {{ count }} registro(s)
+          <div class="right">
+          <a class="button tiny">
+            Anterior
+          </a>
+          <a class="button tiny">
+            Próximo
+          </a>
+          </div>
+        </td>
+      </tr>
+    </tfoot>
+</table>
