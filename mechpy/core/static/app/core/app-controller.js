@@ -63,7 +63,7 @@
         };
     }])
 
-    .controller('ListPessoaController', ['PessoaService','$scope', function(PessoaService, $scope){
+    .controller('ListPessoaController', ['PessoaService','$scope', '$state', function(PessoaService, $scope, $state){
         $scope.pessoas = [];
         $scope.page = 1;
         $scope.limit = 10;
@@ -82,6 +82,10 @@
             { attr:'width="150"',body:'Tipo'},
             {}
         ];
+
+        var link_edicao = function(id){
+            return $state.href('dinamico', {'modulo':'core', 'nome':'pessoa','id':id} );
+        }
         
         $scope.metadata = [
             { modelo:'id'},
@@ -91,7 +95,10 @@
             { modelo:'email'},
             { modelo:'tipo'},
             { 
-                html: "<a> botão</a>"
+                html: function(dado){
+                    var href = link_edicao( dado.id );
+                    return "<a href=\""+ href +"\" class=\"button tiny\"><i class=\"fa fa-pencil-square-o\" aria-hidden=\"true\"></i></a>";
+                }
             }
         ];
         $scope.pessoaService = PessoaService;

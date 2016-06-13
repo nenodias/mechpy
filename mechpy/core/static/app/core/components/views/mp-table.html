@@ -10,6 +10,8 @@
         <tr ng-repeat="dado in dados">
             <td ng-repeat="metadado in metadata" {{ metadado.attr }}>
                 {{ !metadado.html ? dado[metadado.modelo] : '' }}
+                <div ng-if="metadado.html" ng-bind-html="metadado.html(dado)|safe">
+                </div>
             </td>
         </tr>
     </tbody>
