@@ -109,6 +109,7 @@ class Item(models.Model):
 
     descricao = models.CharField('Descrição',max_length=200)
     valor = models.DecimalField('Valor',max_digits=15, decimal_places=2)
+    quantidade = models.DecimalField('Quantidade',max_digits=15, decimal_places=2)
 
     class Meta:
         abstract = True
